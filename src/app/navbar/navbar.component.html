@@ -1,0 +1,22 @@
+
+<div class="navbar">
+  <div class="logo" routerLink="/home">INFLUNEXUS</div>
+  <button class="navbar-toggler" (click)="toggleNavbar()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <div class="navbar-links" [class.collapsed]="isNavbarCollapsed">
+    <a routerLink="/home"><button>Home</button></a>
+    <a routerLink="/gallery"><button>Client-Showcase</button></a>
+    <a routerLink="/video-request"><button>Video-Request</button></a>
+    <a routerLink="/feedback"><button>Feedback</button></a>
+
+    <a routerLink="/login"><button class="signin" *ngIf="!user">Sign In</button></a>
+
+    <a><button *ngIf="user" (click)="logOut()" >Sign Out </button></a>
+
+    <a *ngIf="user"><img class="rounded-circle"  [src]="urllink" alt="{{user.photoUrl}}" style="height: 50px; width: 50px;" id="photo">
+      <div class="hide">{{user.name}}</div></a>
+  </div>
+</div>

@@ -1,0 +1,157 @@
+<app-navbar></app-navbar>
+<body>
+  
+    <section [@fadeIn]>
+    <div class="container">
+      <header>Video Request Form</header>
+  
+      <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+        
+        <div class="details ID">
+          <span class="title">Basic Details</span>
+          <div class="fields">
+            <div class="input-field">
+              <label for="name">Full Name *</label>
+              <input type="text" placeholder="Enter Your Name" name="name" [(ngModel)]="note.name" required #name="ngModel"  [class.is-invalid]="name.invalid && name.touched"/>
+              <small *ngIf=" name.touched && name.invalid" class="text-danger">required field *</small>
+            </div>
+  
+            <div class="input-field">
+              <label for="dob">Email *</label>
+              <input type="email" placeholder="Enter Your Email" name="email" [(ngModel)]="note.email" required #email="ngModel" [class.is-invalid]="email.invalid && email.touched"/>
+               <small *ngIf=" email.touched && email.invalid"  class="text-danger">required field *</small>
+            </div>
+  
+            <div class="input-field">
+              <label for="phone">Phone Number</label>
+              <input type="text" placeholder="Enter Your Phone No" name="phone" [(ngModel)]="note.phone"  #phone="ngModel"/>
+              <!-- <small *ngIf="phone.touched && phone.length()" class="text-danger">10 digit required</small> -->
+            </div>
+  
+            <div class="input-field">
+              <label for="duration">Duration in minute *</label>
+              <input type="number" placeholder="Enter Your Duration" name="duration" [(ngModel)]="note.duration" required #duration="ngModel"  [class.is-invalid]="duration.invalid && duration.touched"/>
+              <small *ngIf="duration.touched && duration.invalid" class="text-danger">required field *</small>
+            </div>
+  
+            <div class="input-field">
+              <label for="videoType">Video Type *</label>
+              <input type="text" list="type" placeholder="Enter Your Video Type" name="videoType" [(ngModel)]="note.videoType" required #videoType="ngModel"  [class.is-invalid]="videoType.invalid && videoType.touched"/>
+              <small *ngIf="videoType.touched && videoType.invalid" class="text-danger">required field *</small>
+              <datalist id="type">
+                <option value="Short"></option>
+                <option value="Long"></option>
+                <option value="Reels"></option>
+                <option value="Other"></option>
+              </datalist>
+            </div>
+  
+            <div class="input-field">
+              <label for="platform">Platform *</label>
+              <input type="text" list="platform" placeholder="Enter Your Platform" name="platform" [(ngModel)]="note.platform" required #platform="ngModel"  [class.is-invalid]="platform.invalid && platform.touched"/>
+               <small *ngIf="platform.touched && platform.invalid" class="text-danger">required field *</small>
+               <!-- <input type="text" name="Platform" list="Platform" placeholder="Enter Your Platform" required formControlName="platform"/> -->
+               <datalist id="platform">
+                 <option value="Instagram"></option>
+                 <option value="Twitter"></option>
+                 <option value="Facebook"></option>
+                 <option value="Youtube"></option>
+                 <option value="Linkdin"></option>
+                 <option value="WhatsApp"></option>
+                 <option value="Tik Tock"></option>
+                 <option value="ShareChat"></option>
+                 <option value="Viber"></option>
+                 <option value="Snapchat"></option>
+                 <option value="Others"></option>
+               </datalist>
+            </div>
+          </div>
+        </div>
+
+        <div class="form first">
+          <div class="input-field">
+            <label for="phone">Requirment</label>
+            <!-- <input type="number" placeholder="Enter Your Phone No" name="phone" [(ngModel)]="note.phone"  #phone="ngModel"/> -->
+            <textarea  placeholder="Describe your Requirment " required [(ngModel)]="note.requirment" name="requirment" #requirment="ngModel" ></textarea>
+          </div>
+        </div>
+  
+        <div class="form first">
+          <span class="title">Additional Details</span>
+          <div class="fields">
+            <div class="input-field">
+              <label for="frequency">Frequency</label>
+              <input type="text" list="frequency" placeholder="Enter Your Frequency" name="frequency" [(ngModel)]="note.frequency"  #frequency="ngModel"  />
+               <datalist id="frequency">
+                 <option value="Monthly"></option>
+                 <option value="Annually"></option>
+                 <option value="One Time"></option>
+               </datalist>
+            </div>
+
+            <div class="bugetData">
+              <label for="mergedInput">Budget (As per frequency)</label>
+              <div id="mergedInput" class="merged-input">
+                  <select id="currency" name="currency" [(ngModel)]="note.selectedCurrency">
+                
+                    <option *ngFor="let currency of currencies" [value]="currency.code">{{ currency.code }}</option>
+                  </select>
+                <input type="number" id="budget"   placeholder="Enter Your Budget" name="budget" [(ngModel)]="note.budget" #budget="ngModel"/>
+              </div>
+            </div>
+            
+  
+            <div class="input-field">
+              <label for="specifications">Specifications</label>
+              <input type="text" placeholder="Enter Your Specifications" name="specifications" [(ngModel)]="note.specifications" #specifications="ngModel"/>
+            </div>
+  
+            <div class="input-field">
+              <label for="name">Genre</label>
+              <!-- <input type="text" name="Genre" list="Genre" placeholder="Choose Your Genre"/> -->
+              <input type="text" name="Genre" list="Genre" placeholder="Choose Your Genre" [(ngModel)]="note.genre" #genre="ngModel"/>
+              <datalist id="Genre">
+                <option value="Comedy"></option>
+                <option value="Action"></option>
+                <option value="Drama"></option>
+                <option value="Si-Fi"></option>
+                <option value="Biopic"></option>
+                <option value="Romance"></option>
+                <option value="Other Category"></option>
+              </datalist>
+            </div>
+  
+            <div class="input-field">
+              <label for="afterEffects">After Effect</label>
+              <input type="text" name="afterEffects" list="effect" placeholder="Choose Your After Effect" [(ngModel)]="note.afterEffects" #afterEffects="ngModel"/>
+              <datalist id="effect">
+                <option value="Fade In"></option>
+                <option value="Fade Out"></option>
+                <option value="Crossfade"></option>
+                <option value="Blur"></option>
+                <option value="Zoom In"></option>
+                <option value="Zoom Out"></option>
+                <option value="Rotate Clockwise"></option>
+                <option value="Black and White"></option>
+                <option value="Old Film"></option>
+                <option value="Cartoon"></option>
+              </datalist>
+            </div>
+  
+            <div class="input-field">
+              <label for="animationType">Animation Type</label>
+              <input type="text" name="animationType" list="animationType" placeholder="Choose Your Animation" [(ngModel)]="note.animationType" #animationType="ngModel"/>
+              <datalist id="animationType">
+                <option value="2D"></option>
+                <option value="3D"></option>
+                <option value="No Required"></option>             
+              </datalist>
+            </div>
+          </div>
+        </div>
+  
+        <button type="submit" >Apply For Video Request</button>
+      </form>
+    </div>
+    </section>
+  </body>
